@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+{% url 'personal' as pers_url%}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cars Project</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            {% if user.is_authenticated %}
+                <p class="text-right">
+                    <a href="/logout" class="btn btn-dark" style="margin:10px 10px 0px 0px;">Выйти</a>
+                    <a href="/password-change" class="btn btn-dark" style="margin: 10px 10px 0px 0px;">Сменить пароль</a><br>
+                    <a href="{{pers_url}}" class="btn btn-dark" style="margin:10px 10px 0px 0px;">Личный кабинет</a>
+                </p>
+            {% else %}
+                <p class="text-right">
+                    <a href="/login" class="btn btn-primary" style="
+                    background-color: #212121; border-color: #212121; margin:10px 10px 0px 0px;">Войти</a>
+                    <a href="/register" class="btn btn-primary" style="
+                    background-color: #212121; border-color: #212121; margin:10px 10px 0px 0px;">Регистрация</a>
+                </p>
+            {% endif %}
+        </header>
+        {% block main %}
+        {% endblock main%}
+        <footer>
+            Гаргарин Д., курсовой проект по ПИ
+        </footer>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+    $('#sort-btn').click(function(){
+        $.ajax({
+            url: '',
+            type: 'get',
+            data: {
+                button_text: $(this).text()
+            },
+            success: function(response){
+                $('#sort-btn').text(response.sort);
+                $('#mainblock').text(" ")
+                var img_path='static\\images\\cars\\'
+
+                $('#mainblock').append('<div class="carblock"><div><br>' +
+                '<img class="img-main-page" src=' + (img_path + response.car1.photo) + '/>'
+                 + '<div class="text-main-page" style="text-align: center"><b>'
+                 + response.car1.name + '</b><br>' +
+                  response.car1.description +
+                 '<br><b>Цена аренды: </b>' + response.car1.price + ' в час<br>' +
+                  '<a class="order" href="order?carid=' + response.car_id1 + '">Заказать</a></div></div>');
+
+                $('#mainblock').append('<div class="carblock"><div><br>' +
+                '<img class="img-main-page" src=' + (img_path + response.car2.photo) + '/>'
+                 + '<div class="text-main-page" style="text-align: center"><b>'
+                 + response.car2.name + '</b><br>' +
+                  response.car2.description +
+                 '<br><b>Цена аренды: </b>' + response.car2.price + ' в час<br>' +
+                  '<a class="order" href="order?carid=' + response.car_id2 + '">Заказать</a></div></div>');
+
+                  $('#mainblock').append('<div class="carblock"><div><br>' +
+                '<img class="img-main-page" src=' + (img_path + response.car3.photo) + '/>'
+                 + '<div class="text-main-page" style="text-align: center"><b>'
+                 + response.car3.name + '</b><br>' +
+                  response.car3.description +
+                 '<br><b>Цена аренды: </b>' + response.car3.price + ' в час<br>' +
+                  '<a class="order" href="order?carid=' + response.car_id3 + '">Заказать</a></div></div>');
+
+                $('#mainblock').append('<div class="carblock"><div><br>' +
+                '<img class="img-main-page" src=' + (img_path + response.car4.photo) + '/>'
+                 + '<div class="text-main-page" style="text-align: center"><b>'
+                 + response.car4.name + '</b><br>' +
+                  response.car4.description +
+                 '<br><b>Цена аренды: </b>' + response.car4.price + ' в час<br>' +
+                  '<a class="order" href="order?carid=' + response.car_id4 + '">Заказать</a></div></div>');
+
+                  $('#mainblock').append('<div class="carblock"><div><br>' +
+                '<img class="img-main-page" src=' + (img_path + response.car5.photo) + '/>'
+                 + '<div class="text-main-page" style="text-align: center"><b>'
+                 + response.car5.name + '</b><br>' +
+                  response.car5.description +
+                 '<br><b>Цена аренды: </b>' + response.car5.price + ' в час<br>' +
+                  '<a class="order" href="order?carid=' + response.car_id5 + '">Заказать</a></div></div>');
+
+                $('#mainblock').append('<div class="carblock"><div><br>' +
+                '<img class="img-main-page" src=' + (img_path + response.car6.photo) + '/>'
+                 + '<div class="text-main-page" style="text-align: center"><b>'
+                 + response.car6.name + '</b><br>' +
+                  response.car6.description +
+                 '<br><b>Цена аренды: </b>' + response.car6.price + ' в час<br>' +
+                  '<a class="order" href="order?carid=' + response.car_id6 + '">Заказать</a></div></div>');
+
+            }
+        });
+    });
+    });
+</script>
+</body>
+</html>

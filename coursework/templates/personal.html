@@ -1,0 +1,62 @@
+{%extends "base.html"%}
+
+{%block main%}
+{%load static%}
+{% load crispy_forms_tags %}
+{% url 'home' as home_url%}
+{% url 'order' as ord_url%}
+<h1>Личная страница</h1>
+{%if user.is_authenticated%}
+    <p>ID пользователя в приложении: {{user.id}}</p>
+    <p>Псевдоним: {{user.username}};</p>
+    {%if user.get_full_name != ""%}
+        <p>Имя и фамилия: {{user.get_full_name}};</p>
+    {%else%}
+        <p>Имя и фамилия: не указано;</p>
+    {%endif%}
+    {%if user.email != ""%}
+        <p>Электронная почта: {{user.email}};</p>
+    {%else%}
+        <p>Электронная почта: не указано;</p>
+    {%endif%}
+    {%if user.is_staff%}
+        <p>Работник: да;</p>
+    {%else%}
+        <p>Работник: нет;</p>
+    {%endif%}
+    {%if user.is_superuser%}
+        <p>Администратор: да;</p>
+    {%else%}
+        <p>Администратор: нет;</p>
+    {%endif%}
+    <p>Дата регистрации: {{user.date_joined}}</p>
+    <p>Дата последнего входа в систему: {{user.last_login}}</p>
+    <hr>
+    {%if cars != None%}
+        <h1>Заказанные автомобили:</h1><br>
+        {%for car in cars%}
+            <p>{{car.name}} ценой {{car.price}} рубля в час</p>
+        {%empty%}
+            <p>Заказанных автомобилей нет</p>
+        {%endfor%}
+    {%endif%}
+    {%if user.is_staff or user.is_superuser%}
+        <hr>
+        <h1>Панель работника</h1><br>
+        <form method="post" style="width: 50%">
+            {% csrf_token %}
+            {{caraddform|crispy}}
+            <button type="submit" class="btn btn-success">Добавить автомобиль</button>
+        </form>
+    {%endif%}
+        <hr>
+        <h1>Панель администратора</h1><br>
+    {%if user.is_superuser%}
+    {%endif%}
+{%else%}
+    <p>Вы не авторизованы</p>
+{%endif%}
+<hr>
+<a class="btn btn-primary" style="
+                    background-color: #212121; border-color: #212121; margin: 10px 10px 0px 0px;" href="{{home_url}}">Вернуться на главную</a>
+{%endblock main%}

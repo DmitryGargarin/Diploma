@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{%block main%}
+{% load static %}
+{% url 'personal' as pers_url%}
+{% url 'order' as ord_url%}
+<div align="center">
+    <button id="sort-btn" type="button" class="btn btn-dark">Текущая сортировка по цене: нет</button><br><br>
+    <div id="mainblock">
+        <p style="font-size: 300%; vertical-align: middle;">Нажмите на кнопку сортировки по цене, чтобы получить список автомобилей!!</p>
+    </div>
+</div>
+{%endblock main%}

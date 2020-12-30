@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+
+{%block main%}
+{%load static%}
+{% load crispy_forms_tags %}
+{% url 'personal' as pers_url%}
+{% url 'home' as home_url%}
+<h1>Страница заказа</h1>
+{% if user.is_authenticated%}
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <div>
+            <h2><b>Информация о машине:</b></h2><br>
+            <p style="margin: 0">Имя машины: {{car.name}}</p><br>
+            <p style="margin: 0">Описание машины: {{car.description}}</p><br>
+            <p style="margin: 0">Цвет машины: {{car.color}}</p><br>
+            <p style="margin: 0">Цена машины: {{car.price}}</p><br>
+        </div>
+        <div>
+            <h2><b>Информация о пользователе:</b></h2><br>
+            <p style="margin: 0">Имя пользователя: {{user.first_name}}</p><br>
+            <p style="margin: 0">Фамилия пользователя: {{user.last_name}}</p><br>
+            <p style="margin: 0">Электронная почта пользователя: {{user.email}}</p><br>
+        </div>
+        <div>
+            <h2><b>Информация о заказе:</b></h2><br>
+            {{ form|crispy }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Подтвердить заказ</button>
+    <a href=".." class="btn btn-danger">Назад</a>
+</form>
+{%else%}
+<p>Вы не авторизированы. Войдите в систему и повторите попытку.</p>
+{%endif%}
+{%endblock main%}

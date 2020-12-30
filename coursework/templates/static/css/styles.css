@@ -1,0 +1,71 @@
+html {
+         position:relative;
+         min-height:100%;
+}
+
+body{
+        margin:0px;
+        background-color:#212121;
+        height:100%;
+}
+
+header{
+        height: 100px;
+        width: auto;
+        background-color: #ffb300;
+        margin-bottom: 20px;
+}
+
+footer{
+        position: bottom;
+        height: 50px;
+        width: 100%;
+        background-color: #ffb300;
+        position: absolute;
+        bottom: 0;
+}
+
+#wrapper{
+        padding-bottom: 100px;
+}
+
+a.order{
+        display: inline-block; /* Строчно-блочный элемент */
+        background: #212121; /* Серый цвет фона */
+        color: #fff; /* Белый цвет текста */
+        padding: 10px; /* Поля вокруг текста */
+        text-decoration: none; /* Убираем подчёркивание */
+        border-radius: 3px; /* Скругляем уголки */
+}
+
+.sortblock{
+        border: 1px double black;
+        width: 45%;
+        margin: 5px 5px 5px 5px;
+        border-radius: 5px;
+        background-color:#ffb300;
+}
+
+.carblock{
+        border: 1px double black;
+        display: inline-block;
+        width: 45%;
+        margin: 5px 5px 5px 5px;
+        border-radius: 5px;
+        background-color:#ffb300;
+        }
+
+.img-main-page{
+        float:left;
+        width: 150px;
+        height:140px;
+        padding: 5px 0px 5px 5px;
+}
+
+.text-main-page{
+        float:left;
+        width:inherit;
+        height:inherit;
+        padding-left: 30px;
+}
+
